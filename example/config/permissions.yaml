@@ -1,0 +1,40 @@
+---
+permissions:
+  ecr:
+    managed_policy_arns:
+      readonly: arn:aws:iam::aws:policy/ReadOnlyAccess
+    policy_statement:
+      Version: '2012-10-17'
+      Statement:
+        - Effect: Allow
+          Action:
+            - ecr:GetAuthorizationToken
+            - ecr:GetDownloadUrlForLayer
+            - ecr:BatchCheckLayerAvailability
+            - ecr:PutImage
+            - ecr:InitiateLayerUpload
+            - ecr:UploadLayerPart
+            - ecr:CompleteLayerUpload
+            - ecr:BatchGetImage
+            - ecr:DescribeRepositories
+          Resource:
+            - '*'
+        - Effect: Deny
+          Action:
+            - sts:*
+          Resource:
+            - '*'
+  lambda-deploy:
+    policy_statement:
+      Version: '2012-10-17'
+      Statement:
+        - Effect: Allow
+          Action:
+            - lambda:UpdateFunctionCode
+          Resource:
+            - '*'
+        - Effect: Deny
+          Action:
+            - sts:*
+          Resource:
+            - '*'

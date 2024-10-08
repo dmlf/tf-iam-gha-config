@@ -1,0 +1,10 @@
+authorized-github-repositories:
+    NyanCorp/fluffy-frontend:
+      organisation: NyanCorp
+      repo-name: fluffy-frontend
+      branches:
+       - main
+       - dev
+      permissions:
+       - ecr
+       - lambda-deploy
